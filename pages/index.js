@@ -37,21 +37,6 @@ export default function Home() {
     }
   }
 
-  async function fetchCyberProfiles() {
-
-    try {
-      for (const ad of addressList) {
-        const response = await clientCyber.query(getProfilesCyber, { address: ad.address }).toPromise()
-        const cybernode = response.data.address.wallet.profiles.edges[0].node;
-        ad.cybernode = cybernode;
-        // console.log(cybernode);
-      }
-      console.log("addressList:",addressList);
-      // fs.writeFileSync('write.txt',addressList);
-    } catch (err) {
-      console.log('error fetching recommended profiles: ', err)
-    }
-  }
 
   async function searchForProfile() {
     try {
@@ -75,11 +60,6 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        <button
-          onClick={fetchCyberProfiles}
-        >SEARCH PROFILES Cyber</button>
-      </div>
       <div>
         <input
           placeholder='Search'
